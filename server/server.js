@@ -37,16 +37,13 @@ app.use(
         resave: false,
 
         saveUninitialized: false,
-
-        cookie: {
-            httpOnly: true,
-
-            sameSite: "lax",
-
-            secure: process.env.NODE_ENV === "production",
-
-            maxAge: 1000 * 60 * 60 * 4
-        }
+        
+cookie: {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: false,
+    maxAge: 1000 * 60 * 60 * 4
+}
     })
 );
 
@@ -65,7 +62,7 @@ app.use(
     express.static(publicPath)
 );
 
-
+``
 // ===============================
 // DATABASE
 // ===============================
