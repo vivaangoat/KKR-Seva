@@ -64,17 +64,7 @@ const publicPath =
 app.use(
     express.static(publicPath)
 );
-app.get("/", (req, res) => {
-    res.sendFile(
-        path.join(publicPath, "index.html")
-    );
-});
 
-app.get("/admin.html", (req, res) => {
-    res.sendFile(
-        path.join(publicPath, "admin.html")
-    );
-});
 
 // ===============================
 // DATABASE
