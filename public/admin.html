@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>KKR Seva - Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+</head>
+
+<body>
+
+
+    <!-- LOGIN -->
+
+    <section id="loginSection" class="admin-login">
+
+        <div class="login-box">
+
+            <h1>
+                🔐 KKR Seva
+            </h1>
+
+            <p>
+                Admin Login
+            </p>
+
+            <form id="loginForm">
+
+                <input type="password" id="loginPassword" placeholder="Enter admin password" required>
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p id="loginError"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ADMIN DASHBOARD -->
+
+    <section id="adminSection" style="display: none;">
+
+        <header>
+
+            <div class="logo">
+                🏠 KKR Seva Admin
+            </div>
+
+            <nav>
+
+                <a href="/">
+                    View Website
+                </a>
+
+                <button id="logoutBtn">
+                    Logout
+                </button>
+
+            </nav>
+
+        </header>
+
+
+        <main>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+
+            <!-- ===============================
+                 STATISTICS
+                 =============================== -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalProviders">
+                            0
+                        </h3>
+
+                        <p>
+                            Total Providers
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✅
+                    </div>
+
+                    <div>
+
+                        <h3 id="verifiedProviders">
+                            0
+                        </h3>
+
+                        <p>
+                            Verified Providers
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⭐
+                    </div>
+
+                    <div>
+
+                        <h3 id="averageRating">
+                            0
+                        </h3>
+
+                        <p>
+                            Average Rating
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <h3 id="totalReviews">
+                            0
+                        </h3>
+
+                        <p>
+                            Total Reviews
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ===============================
+                 STATISTICS SECTIONS
+                 =============================== -->
+
+<div class="stats-sections">
+
+    <div class="admin-box">
+
+        <h2>
+            🔧 Providers by Service
+        </h2>
+
+        <div id="serviceStats">
+        </div>
+
+        <div id="serviceChart" class="dashboard-chart">
+        </div>
+
+    </div>
+
+
+    <div class="admin-box">
+
+        <h2>
+            📍 Providers by Area
+        </h2>
+
+        <div id="areaStats">
+        </div>
+
+        <div id="areaChart" class="dashboard-chart">
+        </div>
+
+    </div>
+
+</div>
+
+
+            <!-- ===============================
+                 ADD PROVIDER
+                 =============================== -->
+
+            <div class="admin-box">
+
+                <h2>
+                    ➕ Add Provider
+                </h2>
+
+
+                <form id="adminForm">
+
+                    <input type="text" id="adminName" placeholder="Provider name" required>
+
+
+                    <!-- SERVICE -->
+
+                    <select id="adminService" required>
+
+                        <option value="">
+                            Select Service
+                        </option>
+
+                        <option value="Plumber">
+                            Plumber
+                        </option>
+
+                        <option value="Electrician">
+                            Electrician
+                        </option>
+
+                        <option value="Maid">
+                            Maid
+                        </option>
+
+                        <option value="Carpenter">
+                            Carpenter
+                        </option>
+
+                        <option value="Painter">
+                            Painter
+                        </option>
+
+                        <option value="Mechanic">
+                            Mechanic
+                        </option>
+
+                    </select>
+
+
+                    <!-- AREA -->
+
+                    <select id="adminArea" required>
+
+                        <option value="">
+                            Select Area
+                        </option>
+
+                        <option value="Thanesar">
+                            Thanesar
+                        </option>
+
+                        <option value="Pipli">
+                            Pipli
+                        </option>
+
+                        <option value="Sector 7">
+                            Sector 7
+                        </option>
+
+                        <option value="Sector 13">
+                            Sector 13
+                        </option>
+
+                        <option value="University Area">
+                            University Area
+                        </option>
+
+                        <option value="Pipli Road">
+                            Pipli Road
+                        </option>
+
+                    </select>
+
+
+                    <!-- PHONE -->
+
+                    <input type="tel" id="adminPhone" placeholder="Phone number" required>
+
+
+                    <!-- HOURS -->
+
+                    <input type="text" id="adminHours" placeholder="Working hours (e.g. 9 AM - 7 PM)" required>
+
+
+                    <!-- MAP PICKER -->
+
+                    <div class="location-picker">
+
+                        <h3>
+                            📍 Provider Location
+                        </h3>
+
+                        <p>
+                            Click on the map to choose the provider's exact location.
+                        </p>
+
+
+                        <div id="adminMap"></div>
+
+
+                        <div class="coordinates">
+
+                            <span>
+                                Latitude:
+                            </span>
+
+                            <strong id="selectedLatitude">
+                                Not selected
+                            </strong>
+
+
+                            <span>
+                                Longitude:
+                            </span>
+
+                            <strong id="selectedLongitude">
+                                Not selected
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- VERIFIED -->
+
+                    <label class="checkbox-row">
+
+                        <input type="checkbox" id="adminVerified">
+
+                        <span>
+                            ✓ Mark as Verified
+                        </span>
+
+                    </label>
+
+
+                    <button type="submit">
+                        Add Provider
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- ===============================
+                 PROVIDERS
+                 =============================== -->
+
+            <div class="admin-box">
+
+                <h2>
+                    👥 Providers
+                </h2>
+
+                <div id="adminProviders">
+                </div>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <!-- ===============================
+         EDIT MODAL
+         =============================== -->
+
+    <div id="editModal" class="edit-modal">
+
+        <div class="edit-box">
+
+            <button id="closeEdit" class="edit-close">
+                ×
+            </button>
+
+
+            <h2>
+                ✏️ Edit Provider
+            </h2>
+
+
+            <form id="editForm">
+
+
+                <input type="text" id="editName" placeholder="Provider name" required>
+
+
+                <select id="editService" required>
+
+                    <option value="Plumber">
+                        Plumber
+                    </option>
+
+                    <option value="Electrician">
+                        Electrician
+                    </option>
+
+                    <option value="Maid">
+                        Maid
+                    </option>
+
+                    <option value="Carpenter">
+                        Carpenter
+                    </option>
+
+                    <option value="Painter">
+                        Painter
+                    </option>
+
+                    <option value="Mechanic">
+                        Mechanic
+                    </option>
+
+                </select>
+
+
+                <select id="editArea" required>
+
+                    <option value="Thanesar">
+                        Thanesar
+                    </option>
+
+                    <option value="Pipli">
+                        Pipli
+                    </option>
+
+                    <option value="Sector 7">
+                        Sector 7
+                    </option>
+
+                    <option value="Sector 13">
+                        Sector 13
+                    </option>
+
+                    <option value="University Area">
+                        University Area
+                    </option>
+
+                    <option value="Pipli Road">
+                        Pipli Road
+                    </option>
+
+                </select>
+
+
+                <input type="tel" id="editPhone" placeholder="Phone number" required>
+
+
+                <input type="text" id="editHours" placeholder="Working hours" required>
+
+
+                <!-- EDIT LOCATION -->
+
+                <div class="location-picker">
+
+                    <h3>
+                        📍 Provider Location
+                    </h3>
+
+                    <p>
+                        Click the map to change the provider's location.
+                    </p>
+
+
+                    <div id="editMap"></div>
+
+
+                    <div class="coordinates">
+
+                        <span>
+                            Latitude:
+                        </span>
+
+                        <strong id="editLatitude">
+                            Not selected
+                        </strong>
+
+
+                        <span>
+                            Longitude:
+                        </span>
+
+                        <strong id="editLongitude">
+                            Not selected
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <label class="checkbox-row">
+
+                    <input type="checkbox" id="editVerified">
+
+                    <span>
+                        ✓ Verified Provider
+                    </span>
+
+                </label>
+
+
+                <button type="submit">
+                    Save Changes
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+    
+    <script src="admin.js?v=2"></script>
+
+</body>
+
+</html>

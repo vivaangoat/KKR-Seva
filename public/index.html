@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KKR Seva | Local Services in Kurukshetra</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+     HEADER
+     ========================= -->
+
+    <header class="main-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                K
+            </div>
+
+            <div>
+
+                <h2>KKR Seva</h2>
+
+                <span>Kurukshetra Services</span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="#services">
+                Services
+            </a>
+
+            <a href="#providers">
+                Providers
+            </a>
+
+            <a href="#map-section">
+                Map
+            </a>
+
+        </nav>
+
+
+        <a href="admin.html" class="admin-link">
+
+            Admin
+
+        </a>
+
+    </header>
+
+
+
+    <!-- =========================
+     HERO
+     ========================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                📍 Serving Kurukshetra
+            </div>
+
+
+            <h1>
+
+                Find trusted
+                <span>local services</span>
+                near you.
+
+            </h1>
+
+
+            <p>
+
+                Find plumbers, electricians, maids,
+                carpenters and other trusted service
+                providers across Kurukshetra.
+
+            </p>
+
+
+            <!-- SEARCH -->
+
+            <div class="hero-search">
+
+                <span>🔍</span>
+
+                <input type="text" id="search" placeholder="Search service, provider or area...">
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div>
+
+                    <strong>
+                        📍
+                    </strong>
+
+                    <span>
+                        Local Providers
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        ✓
+                    </strong>
+
+                    <span>
+                        Verified Services
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        ⭐
+                    </strong>
+
+                    <span>
+                        Customer Reviews
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+     SERVICES
+     ========================= -->
+
+    <section class="services-section" id="services">
+
+        <div class="section-heading">
+
+            <span>
+                WHAT DO YOU NEED?
+            </span>
+
+            <h2>
+                Browse Services
+            </h2>
+
+            <p>
+                Choose a service to find local providers.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <button onclick="showCategory('Plumber')">
+
+                <span>🔧</span>
+
+                <strong>Plumber</strong>
+
+                <small>
+                    Plumbing & repairs
+                </small>
+
+            </button>
+
+
+            <button onclick="showCategory('Electrician')">
+
+                <span>⚡</span>
+
+                <strong>Electrician</strong>
+
+                <small>
+                    Electrical work
+                </small>
+
+            </button>
+
+
+            <button onclick="showCategory('Maid')">
+
+                <span>🧹</span>
+
+                <strong>Maid</strong>
+
+                <small>
+                    Home cleaning
+                </small>
+
+            </button>
+
+
+            <button onclick="showCategory('Carpenter')">
+
+                <span>🪚</span>
+
+                <strong>Carpenter</strong>
+
+                <small>
+                    Furniture & woodwork
+                </small>
+
+            </button>
+
+
+            <button onclick="showCategory('Painter')">
+
+                <span>🎨</span>
+
+                <strong>Painter</strong>
+
+                <small>
+                    Painting services
+                </small>
+
+            </button>
+
+
+            <button onclick="showCategory('Mechanic')">
+
+                <span>🚗</span>
+
+                <strong>Mechanic</strong>
+
+                <small>
+                    Vehicle repairs
+                </small>
+
+            </button>
+
+
+            <button onclick="showAll()" class="all-services">
+
+                <span>＋</span>
+
+                <strong>All Services</strong>
+
+                <small>
+                    View everything
+                </small>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+     PROVIDERS
+     ========================= -->
+
+    <section class="providers-section" id="providers">
+
+        <div class="section-heading">
+
+            <span>
+                LOCAL PROFESSIONALS
+            </span>
+
+            <h2 id="providerTitle">
+                Service Providers in Kurukshetra
+            </h2>
+
+            <p>
+                Find the right person for the job.
+            </p>
+
+        </div>
+
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+            <select id="area">
+
+                <option value="all">
+                    📍 All Areas
+                </option>
+
+                <option value="Thanesar">
+                    Thanesar
+                </option>
+
+                <option value="Pipli">
+                    Pipli
+                </option>
+
+                <option value="Sector 7">
+                    Sector 7
+                </option>
+
+                <option value="Sector 13">
+                    Sector 13
+                </option>
+
+                <option value="University Area">
+                    University Area
+                </option>
+
+                <option value="Pipli Road">
+                    Pipli Road
+                </option>
+
+            </select>
+
+
+            <select id="ratingFilter">
+
+                <option value="all">
+                    ⭐ Any Rating
+                </option>
+
+                <option value="4">
+                    ⭐ 4+ Rating
+                </option>
+
+                <option value="3">
+                    ⭐ 3+ Rating
+                </option>
+
+                <option value="2">
+                    ⭐ 2+ Rating
+                </option>
+
+            </select>
+
+
+            <select id="verifiedFilter">
+
+                <option value="all">
+                    ✓ All Providers
+                </option>
+
+                <option value="verified">
+                    ✓ Verified Only
+                </option>
+
+            </select>
+
+
+            <select id="sortBy">
+
+                <option value="default">
+                    ↕️ Sort: Default
+                </option>
+
+                <option value="rating">
+                    ⭐ Highest Rated
+                </option>
+
+                <option value="name">
+                    🔤 Name A-Z
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div id="providerList" class="provider-list">
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+     MAP
+     ========================= -->
+
+    <section class="map-section" id="map-section">
+
+        <div class="section-heading">
+
+            <span>
+                FIND THEM NEARBY
+            </span>
+
+            <h2>
+                🗺️ Providers on the Map
+            </h2>
+
+            <p>
+                See where local service providers
+                are located in Kurukshetra.
+            </p>
+
+        </div>
+
+
+        <div id="map"></div>
+
+    </section>
+
+
+
+    <!-- =========================
+     FOOTER
+     ========================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <div class="logo-icon">
+                K
+            </div>
+
+            <div>
+
+                <strong>
+                    KKR Seva
+                </strong>
+
+                <span>
+                    Local services, made simple.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <p>
+            Connecting people with local service
+            providers across Kurukshetra.
+        </p>
+
+
+        <div class="footer-bottom">
+
+            © 2026 KKR Seva
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================
+     PROVIDER MODAL
+     ========================= -->
+
+    <div id="modal" class="modal">
+
+        <div id="modalContent" class="modal-content">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+     LEAFLET
+     ========================= -->
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
