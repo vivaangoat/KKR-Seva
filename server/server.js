@@ -1564,6 +1564,13 @@ const PORT =
     process.env.PORT || 3000;
 
 
+    app.get("/api/me", (req, res) => {
+    res.json({
+        loggedIn: !!req.session.admin
+    });
+});
+
+
 app.listen(
     PORT,
 
